@@ -876,7 +876,26 @@ require('lazy').setup({
       signature = { enabled = true },
     },
   },
-
+  -- {
+  --   'catppuccin/nvim',
+  --   name = 'catppuccin', -- Required for lazy.nvim to load correctly
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     require('catppuccin').setup {
+  --       flavour = 'latte', -- Options: "latte", "frappe", "macchiato", "mocha"
+  --       transparent_background = false,
+  --       integrations = {
+  --         cmp = true,
+  --         telescope = true,
+  --         treesitter = true,
+  --         lsp_trouble = true,
+  --         -- Add other kickstart.nvim plugins as needed
+  --       },
+  --     }
+  --     vim.cmd.colorscheme 'catppuccin'
+  --   end,
+  -- },
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
     -- change the command in the config to whatever the name of that colorscheme is.
@@ -888,13 +907,14 @@ require('lazy').setup({
       ---@diagnostic disable-next-line: missing-fields
       require('tokyonight').setup {
         styles = {
-          comments = { italic = false }, -- Disable italics in comments
+          comments = { italic = true }, -- Disable italics in comments
         },
       }
 
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+      vim.o.termguicolors = true
       vim.cmd.colorscheme 'tokyonight-night'
     end,
   },
