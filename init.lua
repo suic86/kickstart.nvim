@@ -876,26 +876,6 @@ require('lazy').setup({
       signature = { enabled = true },
     },
   },
-  -- {
-  --   'catppuccin/nvim',
-  --   name = 'catppuccin', -- Required for lazy.nvim to load correctly
-  --   lazy = false,
-  --   priority = 1000,
-  --   config = function()
-  --     require('catppuccin').setup {
-  --       flavour = 'latte', -- Options: "latte", "frappe", "macchiato", "mocha"
-  --       transparent_background = false,
-  --       integrations = {
-  --         cmp = true,
-  --         telescope = true,
-  --         treesitter = true,
-  --         lsp_trouble = true,
-  --         -- Add other kickstart.nvim plugins as needed
-  --       },
-  --     }
-  --     vim.cmd.colorscheme 'catppuccin'
-  --   end,
-  -- },
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
     -- change the command in the config to whatever the name of that colorscheme is.
@@ -914,11 +894,28 @@ require('lazy').setup({
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.o.termguicolors = true
-      vim.cmd.colorscheme 'tokyonight-night'
+      -- vim.cmd.colorscheme 'tokyonight-night'
     end,
   },
-
+  {
+    'catppuccin/nvim',
+    name = 'catppuccin',
+    priority = 1000, -- load before other plugins
+    config = function()
+      require('catppuccin').setup {
+        flavour = 'frappe', -- latte, frappe, macchiato, mocha
+        transparent_background = false,
+        integrations = {
+          treesitter = true,
+          native_lsp = { enabled = true },
+          cmp = true,
+          telescope = true,
+          -- add more integrations if needed
+        },
+      }
+      vim.cmd.colorscheme 'catppuccin'
+    end,
+  },
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
